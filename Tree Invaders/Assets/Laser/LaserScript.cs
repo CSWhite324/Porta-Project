@@ -9,7 +9,7 @@ public class LaserScript : MonoBehaviour
 
 
 
-    void Update()
+    void FixedUpdate()
     {
         
         // Get the current mouse position
