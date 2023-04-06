@@ -6,10 +6,10 @@ public class LaserScript : MonoBehaviour
 {
     private Vector3 mousePosition;
     public bool pink;
+    private bool shot = false;
 
 
-
-    void FixedUpdate()
+    void Update()
     {
         
         // Get the current mouse position
@@ -18,21 +18,30 @@ public class LaserScript : MonoBehaviour
         // Only track the x position of the mouse
         transform.position = new Vector3(mousePosition.x, transform.position.y, transform.position.z);
 
-       
+
         if (Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(RotateObject());
+            shot = true;
+            Debug.Log(shot);
+            UI_Manager.instance.gameStart();
+            StartCoroutine(Shoot());
+
+        }
+        if(Input.GetMouseButtonUp(0))
+        {
+            shot=false;
+            Debug.Log(shot);
         }
     }
 
-    IEnumerator RotateObject()
+    IEnumerator Shoot()
     {
-        //moves pink laser in front of background
         if (pink)
         {
-            transform.position = new Vector3(mousePosition.x, transform.position.y, -1f);
+            Vector3 newPos = transform.position;
+            newPos.z = -1f;
+            transform.position = newPos;
         }
-
         // Calculate the rotation amount and speed
         float rotationAmount = 90f;
         float rotationSpeed = rotationAmount / 0.1f;
@@ -50,7 +59,21 @@ public class LaserScript : MonoBehaviour
         transform.rotation = Quaternion.identity;
         if (pink)
         {
-            transform.position = new Vector3(mousePosition.x, transform.position.y, 1f);
+            Vector3 newPos = transform.position;
+            newPos.z = 1f;
+            transform.position = newPos;
         }
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (shot && collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Passed Thru");
+            Destroy(collision.gameObject);
+        }
+        
+    }
+
 }
