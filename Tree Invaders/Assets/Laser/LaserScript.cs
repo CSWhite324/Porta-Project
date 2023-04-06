@@ -7,6 +7,7 @@ public class LaserScript : MonoBehaviour
     private Vector3 mousePosition;
     public bool pink;
     private bool shot = false;
+    private bool hit = false;
     public GameObject horizontalEnemy;
 
     private void Start()
@@ -25,11 +26,15 @@ public class LaserScript : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            
             shot = true;
             StartCoroutine(Fire());
             StartCoroutine(Shoot());
-
-            UI_Manager.instance.gameStart();
+            if (!hit)
+            {
+                UI_Manager.instance.subScore();
+            }
+            UI_Manager.instance.isVisible = false;
         }
 
     }
@@ -72,6 +77,8 @@ public class LaserScript : MonoBehaviour
     {
         if(shot == true)
         {
+            hit = true;
+            UI_Manager.instance.addScore();
             Destroy(collision.gameObject);
         }
     }

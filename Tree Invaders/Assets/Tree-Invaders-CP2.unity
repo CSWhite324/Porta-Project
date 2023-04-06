@@ -154,8 +154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isVisible: 1
+  isStarted: 0
   title: {fileID: 1424906182}
   highScore: {fileID: 1371846883}
+  scoreText: {fileID: 1048061545}
 --- !u!4 &342162512
 Transform:
   m_ObjectHideFlags: 0
@@ -367,6 +369,10 @@ PrefabInstance:
       propertyPath: pink
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1461866760523374682, guid: 17f7e044074e02f43bf763020f8a97cb, type: 3}
+      propertyPath: horizontalEnemy
+      value: 
+      objectReference: {fileID: 3793559852688714740, guid: 67aea797d0bdc6d4da7daf62503cdaf3, type: 3}
     - target: {fileID: 3535218284184192845, guid: 17f7e044074e02f43bf763020f8a97cb, type: 3}
       propertyPath: m_Name
       value: seeThru
@@ -756,6 +762,10 @@ PrefabInstance:
       propertyPath: pink
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1516550332968046740, guid: 67350e14a9884154aa6608260ee32114, type: 3}
+      propertyPath: horizontalEnemy
+      value: 
+      objectReference: {fileID: 3793559852688714740, guid: 67aea797d0bdc6d4da7daf62503cdaf3, type: 3}
     - target: {fileID: 3535218284184192845, guid: 67350e14a9884154aa6608260ee32114, type: 3}
       propertyPath: m_Name
       value: seeThru 1
