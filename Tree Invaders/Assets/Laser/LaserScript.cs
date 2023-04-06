@@ -7,7 +7,11 @@ public class LaserScript : MonoBehaviour
     private Vector3 mousePosition;
     public bool pink;
     private bool shot = false;
+    public GameObject horizontalEnemy;
 
+    private void Start()
+    {
+    }
 
     void Update()
     {
@@ -22,19 +26,19 @@ public class LaserScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             shot = true;
-            Debug.Log(shot);
-            UI_Manager.instance.gameStart();
+            StartCoroutine(Fire());
             StartCoroutine(Shoot());
 
+            UI_Manager.instance.gameStart();
         }
-        if(Input.GetMouseButtonUp(0))
-        {
-            shot=false;
-            Debug.Log(shot);
-        }
+
     }
 
-    IEnumerator Shoot()
+    IEnumerator Shoot() {
+        yield return new WaitForSeconds(.1f);
+        shot = false;
+    }
+    IEnumerator Fire()
     {
         if (pink)
         {
@@ -64,16 +68,11 @@ public class LaserScript : MonoBehaviour
             transform.position = newPos;
         }
     }
-
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-
-        if (shot && collision.gameObject.CompareTag("Enemy"))
+        if(shot == true)
         {
-            Debug.Log("Passed Thru");
             Destroy(collision.gameObject);
         }
-        
     }
-
 }
