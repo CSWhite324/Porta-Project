@@ -9,6 +9,8 @@ public class LaserScript : MonoBehaviour
     private bool shot = false;
     private bool hit = false;
     public GameObject horizontalEnemy;
+    public GameObject verticalEnemy;
+    public GameObject verticalBounceEnemy;
 
     private void Start()
     {
@@ -48,7 +50,7 @@ public class LaserScript : MonoBehaviour
         if (pink)
         {
             Vector3 newPos = transform.position;
-            newPos.z = -1f;
+            newPos.z = -18f;
             transform.position = newPos;
         }
         // Calculate the rotation amount and speed
@@ -69,13 +71,13 @@ public class LaserScript : MonoBehaviour
         if (pink)
         {
             Vector3 newPos = transform.position;
-            newPos.z = 1f;
+            newPos.z = -16f;
             transform.position = newPos;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(shot == true)
+        if(shot == true && collision.gameObject.tag == "Enemy")
         {
             hit = true;
             UI_Manager.instance.addScore();
