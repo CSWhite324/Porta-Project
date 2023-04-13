@@ -27,10 +27,13 @@ public class UI_Manager : MonoBehaviour
     private void Start()
     {
         highscore = PlayerPrefs.GetFloat("highscore", 0);
+        highScoreText.text = highscore.ToString();
         instance = this;
         firstKill = true;
         scoreText.text = "000.00";
         score = 1;
+        gameOverText.enabled = false;   
+        restartText.enabled = false;
     }
     private void Update()
     {
@@ -89,7 +92,7 @@ public class UI_Manager : MonoBehaviour
 
     public void subScore()
     {
-        score -= 5;
+        score -= 1;
         scoreText.text = "" + score;
     }
 
