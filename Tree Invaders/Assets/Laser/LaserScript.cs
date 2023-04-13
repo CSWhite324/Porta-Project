@@ -18,25 +18,28 @@ public class LaserScript : MonoBehaviour
 
     void Update()
     {
-        
-        // Get the current mouse position
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // Only track the x position of the mouse
-        transform.position = new Vector3(mousePosition.x, transform.position.y, transform.position.z);
-
-
-        if (Input.GetMouseButtonDown(0))
+        if (UI_Manager.instance != null && UI_Manager.instance.move == true)
         {
-            
-            shot = true;
-            StartCoroutine(Fire());
-            StartCoroutine(Shoot());
-            if (!hit)
+
+            // Get the current mouse position
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            // Only track the x position of the mouse
+            transform.position = new Vector3(mousePosition.x, transform.position.y, transform.position.z);
+
+
+            if (Input.GetMouseButtonDown(0))
             {
-                UI_Manager.instance.subScore();
+
+                shot = true;
+                StartCoroutine(Fire());
+                StartCoroutine(Shoot());
+                if (!hit)
+                {
+                    UI_Manager.instance.subScore();
+                }
+                UI_Manager.instance.isVisible = false;
             }
-            UI_Manager.instance.isVisible = false;
         }
 
     }

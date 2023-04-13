@@ -9,12 +9,14 @@ public class LaserCanonScript : MonoBehaviour
     // Start is called before the first frame update
     void FixedUpdate()
     {
-        
-        // Get the current mouse position
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (UI_Manager.instance != null && UI_Manager.instance.move == true)
+        {
 
-        // Only track the x position of the mouse
-        transform.position = new Vector3(mousePosition.x, transform.position.y, transform.position.z);
+            // Get the current mouse position
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+            // Only track the x position of the mouse
+            transform.position = new Vector3(mousePosition.x, transform.position.y, transform.position.z);
+        }
     }
 }
