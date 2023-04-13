@@ -302,6 +302,14 @@ PrefabInstance:
       propertyPath: pink
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1516550332968046740, guid: 67350e14a9884154aa6608260ee32114, type: 3}
+      propertyPath: verticalEnemy
+      value: 
+      objectReference: {fileID: 6359143803828692794, guid: 86edceefd1cf054459c458c2c682baa8, type: 3}
+    - target: {fileID: 1516550332968046740, guid: 67350e14a9884154aa6608260ee32114, type: 3}
+      propertyPath: verticalBounceEnemy
+      value: 
+      objectReference: {fileID: 115939772423886483, guid: 46e35f8d14576404f851c2a9906afbef, type: 3}
     - target: {fileID: 3535218284184192845, guid: 67350e14a9884154aa6608260ee32114, type: 3}
       propertyPath: m_Name
       value: seeThru 1
@@ -340,7 +348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4557521992321310026, guid: 67350e14a9884154aa6608260ee32114, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.47
+      value: -20.84
       objectReference: {fileID: 0}
     - target: {fileID: 4557521992321310026, guid: 67350e14a9884154aa6608260ee32114, type: 3}
       propertyPath: m_LocalRotation.w
