@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class VerticalEnemyScript : MonoBehaviour
 {
-    public float speed = 50.0f;
+    public float speedModifier = 0.5f;
+    public float baseSpeed = 5f;
     public int time = 0;
+    public float despawnBoundary = -6f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,13 +18,14 @@ public class VerticalEnemyScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position += transform.up * Time.deltaTime * speed;
-
+        transform.position += transform.up * Time.deltaTime * (baseSpeed + (speedModifier * UI_Manager.instance.score));
         time = time + 1;
+
+        
 
 
         // despawn
-        if (time > 100){
+        if (transform.position.y < despawnBoundary){
             Destroy(gameObject);
         }
     }

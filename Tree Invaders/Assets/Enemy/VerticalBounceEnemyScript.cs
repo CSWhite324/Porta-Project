@@ -5,10 +5,14 @@ using UnityEngine;
 public class VerticalBounceEnemyScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float speed = 10.0f;
+    public float speedModifier = 0.3f;
+    public float baseSpeed = 3f;
     public int time = 0;
     public float xMax = 3f;
     public float xMin = -3f;
+    public float despawnBoundary = -6f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,15 +31,14 @@ public class VerticalBounceEnemyScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, -135));
         }
         
-        transform.position += transform.up * Time.deltaTime * speed;
-
+        transform.position += transform.up * Time.deltaTime * (baseSpeed + (speedModifier * UI_Manager.instance.score));
         time = time + 1;
 
         
 
 
         // despawn
-        if (time > 100){
+        if (transform.position.y < despawnBoundary){
             Destroy(gameObject);
         }
     }

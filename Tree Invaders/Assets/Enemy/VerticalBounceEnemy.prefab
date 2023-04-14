@@ -121,7 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49be17e6d70a63545a5c19c0d0a54c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speedModifier: 0.1
+  baseSpeed: 3
   time: 0
-  xMax: 2.8
-  xMin: -2.8
+  xMax: 3
+  xMin: -3
+  despawnBoundary: -6

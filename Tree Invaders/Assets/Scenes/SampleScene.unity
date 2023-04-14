@@ -1142,7 +1142,7 @@ GameObject:
   - component: {fileID: 1698160062}
   m_Layer: 0
   m_Name: UI
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1166,6 +1166,7 @@ MonoBehaviour:
   scoreText: {fileID: 1577451376}
   gameOverText: {fileID: 1438562575}
   restartText: {fileID: 1701312746}
+  score: 0
   move: 1
 --- !u!4 &1698160063
 Transform:
@@ -1294,7 +1295,7 @@ MonoBehaviour:
   horizontalEnemyPrefab: {fileID: 3793559852688714740, guid: 67aea797d0bdc6d4da7daf62503cdaf3, type: 3}
   verticalEnemyPrefab: {fileID: 6359143803828692794, guid: 86edceefd1cf054459c458c2c682baa8, type: 3}
   verticalBounceEnemyPrefab: {fileID: 115939772423886483, guid: 46e35f8d14576404f851c2a9906afbef, type: 3}
-  spawnInterval: 500
+  spawnInterval: 1000
 --- !u!4 &1746836504
 Transform:
   m_ObjectHideFlags: 0

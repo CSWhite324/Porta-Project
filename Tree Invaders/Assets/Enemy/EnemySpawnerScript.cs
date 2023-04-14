@@ -17,8 +17,9 @@ public class EnemySpawnerScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        /*
         if(time % spawnInterval == 0){
             spawnHorizontalRight(horizontalEnemyPrefab);
         }
@@ -32,6 +33,21 @@ public class EnemySpawnerScript : MonoBehaviour
             spawnVerticalBounce(verticalBounceEnemyPrefab);
         }
         time++;
+        */
+
+        if(Random.Range(0, 100) == 0){
+            spawnHorizontalRight(horizontalEnemyPrefab);
+        }
+        if(Random.Range(0, 100) == 0){
+            spawnHorizontalLeft(horizontalEnemyPrefab);
+        }
+        if(Random.Range(0, 250) == 0 && UI_Manager.instance.isStarted){
+            spawnVertical(verticalEnemyPrefab);
+        }
+        if(Random.Range(0, 250) == 0 && UI_Manager.instance.isStarted){
+            spawnVerticalBounce(verticalBounceEnemyPrefab);
+        }
+
     }
 
     private void spawnHorizontalRight(GameObject enemy){

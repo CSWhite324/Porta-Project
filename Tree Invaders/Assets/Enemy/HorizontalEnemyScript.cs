@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class HorizontalEnemyScript : MonoBehaviour
 {
-    public float speed = 10.0f;
+    public float speedModifier = 0.1f;
+    public float baseSpeed = 1f;
     public int time = 0;
+    public float despawnBoundary = 10f;
+    private bool started = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,13 +19,21 @@ public class HorizontalEnemyScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position += transform.up * Time.deltaTime * speed;
+        if(!started){
+            if(UI_Manager.instance.isStarted){
+                started = true;
+                baseSpeed++;
+            }
+        }
+
+        transform.position += transform.up * Time.deltaTime * (baseSpeed + (speedModifier * UI_Manager.instance.score));
 
         time = time + 1;
 
 
         // despawn
-        if (time > 100){
+
+        if (transform.position.x > despawnBoundary || transform.position.x < -despawnBoundary){
             Destroy(gameObject);
         }
     }

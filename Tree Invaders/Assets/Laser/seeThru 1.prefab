@@ -99,6 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pink: 0
+  horizontalEnemy: {fileID: 0}
+  verticalEnemy: {fileID: 0}
+  verticalBounceEnemy: {fileID: 0}
 --- !u!61 &8238307610258449511
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class UI_Manager : MonoBehaviour
     public Text scoreText;
     public Text gameOverText;
     public Text restartText;
-    private float score = 0;
+    public float score = 0f;
     private float highscore = 0;
     private bool firstKill;
     public static UI_Manager instance;
@@ -22,7 +22,7 @@ public class UI_Manager : MonoBehaviour
     private void Awake()
     {
         move = true;
-    }
+    } 
 
     private void Start()
     {
