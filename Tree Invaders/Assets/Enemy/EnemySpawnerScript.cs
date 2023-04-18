@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemySpawnerScript : MonoBehaviour
 {
 
-    [SerializeField] GameObject horizontalEnemyPrefab;
-    [SerializeField] GameObject verticalEnemyPrefab;
-    [SerializeField] GameObject verticalBounceEnemyPrefab;
+    [SerializeField] GameObject greenPrefab;
+    [SerializeField] GameObject yellowPrefab;
+    [SerializeField] GameObject bouncePrefab;
+    [SerializeField] GameObject whitePrefab;
+    [SerializeField] GameObject whiteSlowPrefab;
     [SerializeField] private float spawnInterval = 1000;
     private float time = 0;
     // Start is called before the first frame update
@@ -19,34 +21,33 @@ public class EnemySpawnerScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        /*
-        if(time % spawnInterval == 0){
-            spawnHorizontalRight(horizontalEnemyPrefab);
-        }
-        if(time % spawnInterval == spawnInterval/2){
-            spawnHorizontalLeft(horizontalEnemyPrefab);
-        }
-        if(time % spawnInterval == 0){
-            spawnVertical(verticalEnemyPrefab);
-        }
-        if(time % spawnInterval == spawnInterval/2){
-            spawnVerticalBounce(verticalBounceEnemyPrefab);
-        }
-        time++;
-        */
 
-        if(Random.Range(0, 100) == 0){
-            spawnHorizontalRight(horizontalEnemyPrefab);
+        //spawn green enemy either left or right
+        if(Random.Range(0, 50) == 0){
+            if(Random.Range(0, 2) == 0){
+                spawnHorizontalRight(greenPrefab);
+            }else{
+                spawnHorizontalLeft(greenPrefab);
+            }
         }
-        if(Random.Range(0, 100) == 0){
-            spawnHorizontalLeft(horizontalEnemyPrefab);
+        //spawn vertical enemy, either yellow, bounce, white, or whiteSlow
+        if(Random.Range(0, 50) == 0 && UI_Manager.instance.isStarted){
+            if(Random.Range(0, 2) == 0){
+                if(Random.Range(0, 2) == 0){
+                    spawnVerticalBounce(bouncePrefab);
+                }else{
+                    spawnVertical(yellowPrefab, "yellow");
+                }
+            }else{
+                if(Random.Range(0, 2) == 0){
+                    spawnVertical(whitePrefab, "white");
+                }else{
+                    spawnVertical(whiteSlowPrefab, "whiteSlow");
+                }
+            }
+            
         }
-        if(Random.Range(0, 250) == 0 && UI_Manager.instance.isStarted){
-            spawnVertical(verticalEnemyPrefab);
-        }
-        if(Random.Range(0, 250) == 0 && UI_Manager.instance.isStarted){
-            spawnVerticalBounce(verticalBounceEnemyPrefab);
-        }
+
 
     }
 
@@ -55,6 +56,7 @@ public class EnemySpawnerScript : MonoBehaviour
         GameObject newEnemy = Instantiate(enemy, new Vector3( 5f , Random.Range(-2f, 4f)), Quaternion.identity);
         // rotate newEnemy to point left
         newEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+        newEnemy.GetComponent<enemyScript>().setType("green");
 
     }
 
@@ -63,14 +65,16 @@ public class EnemySpawnerScript : MonoBehaviour
         GameObject newEnemy = Instantiate(enemy, new Vector3( -5f , Random.Range(-2f, 4f)), Quaternion.identity);
         // rotate newEnemy to point left
         newEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+        newEnemy.GetComponent<enemyScript>().setType("green");
 
     }
 
-    private void spawnVertical(GameObject enemy){
+    private void spawnVertical(GameObject enemy, string type){
         // spawn enemy
         GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(-3f, 3f), 6f), Quaternion.identity);
         // rotate newEnemy to point down
         newEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+        newEnemy.GetComponent<enemyScript>().setType(type);
 
     }
 
@@ -84,6 +88,7 @@ public class EnemySpawnerScript : MonoBehaviour
         }else{
             newEnemy.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -135));
         }
+        newEnemy.GetComponent<enemyScript>().setType("bounce");
 
 
     }

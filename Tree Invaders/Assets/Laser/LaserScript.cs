@@ -84,7 +84,8 @@ public class LaserScript : MonoBehaviour
         {
             hit = true;
             UI_Manager.instance.addScore();
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<enemyScript>().destroyEnemy();
         }
     }
 }
