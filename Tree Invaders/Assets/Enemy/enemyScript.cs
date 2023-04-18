@@ -14,6 +14,7 @@ public class enemyScript : MonoBehaviour
 
 
     public SpriteRenderer spriteRenderer;
+    [SerializeField] GameObject smokePrefab;
     //[SerializeField] public Sprite greenSprite;
     //[SerializeField] public Sprite yellowSprite;
     //[SerializeField] public Sprite whiteSprite;
@@ -56,7 +57,7 @@ public class enemyScript : MonoBehaviour
             speedModifier = 0.05f;
             baseSpeed = 0.5f;
             Color tempColor = spriteRenderer.color;
-            tempColor.a = 0.42f;
+            tempColor.a = 0.5f;
             spriteRenderer.color = tempColor;
         }
     }
@@ -101,6 +102,8 @@ public class enemyScript : MonoBehaviour
     public void destroyEnemy(){
         for(int i = 0; i < 6; i++){
             Debug.Log("explode");
+            GameObject newSmoke = Instantiate(smokePrefab, new Vector3(transform.position.x- Random.Range(-0.3f, 0.3f) , transform.position.y-  Random.Range(-0.3f, 0.3f)), Quaternion.identity);
+            newSmoke.GetComponent<SmokeScript>().setType(type);
         }
 
         Destroy(gameObject);

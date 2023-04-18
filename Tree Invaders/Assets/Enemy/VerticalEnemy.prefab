@@ -132,6 +132,7 @@ MonoBehaviour:
   speedModifier: 0
   baseSpeed: 0
   spriteRenderer: {fileID: 2440999137643984121}
+  smokePrefab: {fileID: 7640833381220771433, guid: e52374d5689e1954c9dc9cc503d4a4f1, type: 3}
   xBounceMax: 3
   xBounceMin: -3
   verticalDespawnBoundary: -6
