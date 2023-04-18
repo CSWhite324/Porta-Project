@@ -9,19 +9,28 @@ public class UI_Manager : MonoBehaviour
     public bool isVisible = true;
     public bool isStarted = false;
     public Text title;
-    public Text highScoreText;
-    public Text scoreText;
-    public Text gameOverText;
-    public Text restartText;
+    [SerializeField] Text highScoreText;
+    [SerializeField] Text scoreText;
+    [SerializeField] Text gameOverText;
+    [SerializeField] Text restartText;
+    [SerializeField] Text soundText;
+    [SerializeField] Text gamePlayText;
+    [SerializeField] Text particleText;
+    [SerializeField] Text explosionsText;
+    [SerializeField] Text instructionsText;
+    [SerializeField] Slider volumeSlider;
+    [SerializeField] Toggle explosionsToggle;
     public float score = 0f;
     private float highscore = 0;
-    private bool firstKill;
+    public bool firstKill = true;
     public static UI_Manager instance;
     public bool move = true;
+    public int pause = 1;
 
     private void Awake()
     {
         move = true;
+        pause = 1;
     } 
 
     private void Start()
@@ -34,6 +43,13 @@ public class UI_Manager : MonoBehaviour
         score = 1;
         gameOverText.enabled = false;   
         restartText.enabled = false;
+        soundText.enabled = false;
+        gamePlayText.enabled = false;
+        particleText.enabled = false;
+        explosionsText.enabled = false;
+        instructionsText.enabled = false;
+        volumeSlider.gameObject.SetActive(false);
+        explosionsToggle.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -56,17 +72,24 @@ public class UI_Manager : MonoBehaviour
             highScoreText.enabled = true;
         }
 
-        if (score <= 0)
+        if (score < 0)
         {
             gameOver();
+            move = false;   
             if(move == false && Input.GetMouseButtonDown(2) || Input.GetKeyDown(KeyCode.R))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
-        else
+        else if(pause == 1)
         {
             move = true;
+        }
+        
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            paused();
         }
     }
 
@@ -91,7 +114,7 @@ public class UI_Manager : MonoBehaviour
     }
 
     public void subScore()
-    {
+    {   
         score -= 1;
         scoreText.text = "" + score;
     }
@@ -113,5 +136,32 @@ public class UI_Manager : MonoBehaviour
         title.enabled = true;
         restartText.enabled = true;
         move = false;
+    }
+
+    public void paused()
+    {
+        pause *= -1;
+        if (pause == -1)
+        {
+            soundText.enabled = true;
+            gamePlayText.enabled = true;
+            particleText.enabled = true;
+            explosionsText.enabled = true;
+            instructionsText.enabled = true;
+            volumeSlider.gameObject.SetActive(true);
+            explosionsToggle.gameObject.SetActive(true);
+            move = false;
+        }
+        if(pause == 1)
+        {
+            soundText.enabled = false;
+            gamePlayText.enabled = false;
+            particleText.enabled = false;
+            explosionsText.enabled = false;
+            instructionsText.enabled = false;
+            volumeSlider.gameObject.SetActive(false);
+            explosionsToggle.gameObject.SetActive(false);
+            move = true;
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class enemyScript : MonoBehaviour
 {
@@ -20,18 +21,19 @@ public class enemyScript : MonoBehaviour
     //[SerializeField] public Sprite whiteSprite;
     //[SerializeField] public Sprite whiteSlowSprite;
 
-
-
     public float xBounceMax = 3f;
     public float xBounceMin = -3f;
     public float verticalDespawnBoundary = -6f;
     public float horizontalDespawnBoundary = 10f;
 
+    public static enemyScript instance;
+    public bool explosion;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;    
     }
 
     public void setType(string pType){
@@ -67,25 +69,29 @@ public class enemyScript : MonoBehaviour
     void FixedUpdate()
     {
 
-        
         // move enemy forward
         transform.position += transform.up * Time.deltaTime * (baseSpeed + (speedModifier * UI_Manager.instance.score));
-        if(direction == "vertical"){
+        if (direction == "vertical")
+        {
             bounceCheck();
         }
 
 
         // despawn
-        if(type == "vertical"){
-            if (transform.position.y < verticalDespawnBoundary){
-                Destroy(gameObject);
-            }
-        }else{
-            if (transform.position.x > horizontalDespawnBoundary || transform.position.x < -horizontalDespawnBoundary){
+        if (type == "vertical")
+        {
+            if (transform.position.y < verticalDespawnBoundary)
+            {
                 Destroy(gameObject);
             }
         }
-        
+        else
+        {
+            if (transform.position.x > horizontalDespawnBoundary || transform.position.x < -horizontalDespawnBoundary)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     void bounceCheck()
@@ -99,13 +105,17 @@ public class enemyScript : MonoBehaviour
         }
     }
 
-    public void destroyEnemy(){
-        for(int i = 0; i < 6; i++){
-            Debug.Log("explode");
-            GameObject newSmoke = Instantiate(smokePrefab, new Vector3(transform.position.x- Random.Range(-0.3f, 0.3f) , transform.position.y-  Random.Range(-0.3f, 0.3f)), Quaternion.identity);
-            newSmoke.GetComponent<SmokeScript>().setType(type);
+    public void destroyEnemy() {
+        Debug.Log(" EXPLOSION " + ExplosionToggler.instance.explosion);
+        if (ExplosionToggler.instance.explosion)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                Debug.Log("explode");
+                GameObject newSmoke = Instantiate(smokePrefab, new Vector3(transform.position.x - Random.Range(-0.3f, 0.3f), transform.position.y - Random.Range(-0.3f, 0.3f)), Quaternion.identity);
+                newSmoke.GetComponent<SmokeScript>().setType(type);
+            }
         }
-
         Destroy(gameObject);
     }
 }

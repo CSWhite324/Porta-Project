@@ -141,6 +141,8 @@ MonoBehaviour:
   direction: 
   speedModifier: 0
   baseSpeed: 0
+  audioSource: {fileID: 0}
+  explosion: {fileID: 8300000, guid: e6f9cbc26d82c3948a34037e8cde61d7, type: 3}
   spriteRenderer: {fileID: 3793559852547388002}
   smokePrefab: {fileID: 7640833381220771433, guid: e52374d5689e1954c9dc9cc503d4a4f1, type: 3}
   xBounceMax: 0

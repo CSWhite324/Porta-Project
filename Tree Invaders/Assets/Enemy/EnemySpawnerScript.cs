@@ -31,7 +31,7 @@ public class EnemySpawnerScript : MonoBehaviour
             }
         }
         //spawn vertical enemy, either yellow, bounce, white, or whiteSlow
-        if(Random.Range(0, 50) == 0 && UI_Manager.instance.isStarted){
+        if(Random.Range(0, 50) == 0 && UI_Manager.instance.isStarted && UI_Manager.instance.pause == 1){
             if(Random.Range(0, 2) == 0){
                 if(Random.Range(0, 2) == 0){
                     spawnVerticalBounce(bouncePrefab);

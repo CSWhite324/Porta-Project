@@ -11,9 +11,13 @@ public class LaserScript : MonoBehaviour
     public GameObject horizontalEnemy;
     public GameObject verticalEnemy;
     public GameObject verticalBounceEnemy;
+    public AudioSource audioSource;
+    public AudioClip laser;
+    public AudioClip explosion;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -30,17 +34,22 @@ public class LaserScript : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-
+                audioSource.clip = laser;
+                if (laser != null)
+                {
+                    audioSource.Play();
+                }
                 shot = true;
                 StartCoroutine(Fire());
                 StartCoroutine(Shoot());
-                if (!hit)
+                if (!hit && !UI_Manager.instance.firstKill)
                 {
                     UI_Manager.instance.subScore();
                 }
-                UI_Manager.instance.isVisible = false;
+                UI_Manager.instance.isVisible = false;      
             }
         }
+        hit = false;
 
     }
 
@@ -83,6 +92,11 @@ public class LaserScript : MonoBehaviour
         if(shot == true && collision.gameObject.tag == "Enemy")
         {
             hit = true;
+            audioSource.clip = explosion;
+            if(explosion != null)
+            {
+                audioSource.Play();
+            }
             UI_Manager.instance.addScore();
             //Destroy(collision.gameObject);
             collision.gameObject.GetComponent<enemyScript>().destroyEnemy();
