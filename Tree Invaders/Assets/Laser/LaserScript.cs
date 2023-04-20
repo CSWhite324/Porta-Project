@@ -62,7 +62,7 @@ public class LaserScript : MonoBehaviour
         if (pink)
         {
             Vector3 newPos = transform.position;
-            newPos.z = 0f;
+            newPos.z = 1f;
             transform.position = newPos;
         }
         // Calculate the rotation amount and speed

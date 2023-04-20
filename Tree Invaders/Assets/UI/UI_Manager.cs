@@ -18,8 +18,10 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] Text particleText;
     [SerializeField] Text explosionsText;
     [SerializeField] Text instructionsText;
+    [SerializeField] Text nightTimeText;
     [SerializeField] Slider volumeSlider;
     [SerializeField] Toggle explosionsToggle;
+    [SerializeField] Toggle nightTimeToggle;
     public float score = 0f;
     private float highscore = 0;
     public bool firstKill = true;
@@ -48,8 +50,10 @@ public class UI_Manager : MonoBehaviour
         particleText.enabled = false;
         explosionsText.enabled = false;
         instructionsText.enabled = false;
+        nightTimeText.enabled = false;
         volumeSlider.gameObject.SetActive(false);
         explosionsToggle.gameObject.SetActive(false);
+        nightTimeToggle.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -148,8 +152,10 @@ public class UI_Manager : MonoBehaviour
             particleText.enabled = true;
             explosionsText.enabled = true;
             instructionsText.enabled = true;
+            nightTimeText.enabled = true;
             volumeSlider.gameObject.SetActive(true);
             explosionsToggle.gameObject.SetActive(true);
+            nightTimeToggle.gameObject.SetActive(true);
             move = false;
         }
         if(pause == 1)
@@ -159,8 +165,10 @@ public class UI_Manager : MonoBehaviour
             particleText.enabled = false;
             explosionsText.enabled = false;
             instructionsText.enabled = false;
+            nightTimeText.enabled = false;
             volumeSlider.gameObject.SetActive(false);
             explosionsToggle.gameObject.SetActive(false);
+            nightTimeToggle.gameObject.SetActive(false);
             move = true;
         }
     }
