@@ -2587,6 +2587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1698160063}
   - component: {fileID: 1698160062}
+  - component: {fileID: 1698160064}
   m_Layer: 0
   m_Name: UI
   m_TagString: UI
@@ -2641,6 +2642,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1698160064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698160061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b55152be112abc5489bae90baa7a121d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloud: {fileID: 3793559852688714740, guid: 08800eee51a135b4d8be5d7c23727234, type: 3}
+  minSpawnInterval: 0.5
+  maxSpawnInterval: 3
 --- !u!1 &1701312744
 GameObject:
   m_ObjectHideFlags: 0
