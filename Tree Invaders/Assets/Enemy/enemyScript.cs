@@ -69,27 +69,30 @@ public class enemyScript : MonoBehaviour
     void FixedUpdate()
     {
 
-        // move enemy forward
-        transform.position += transform.up * Time.deltaTime * (baseSpeed + (speedModifier * UI_Manager.instance.score));
-        if (direction == "vertical")
+        if (UI_Manager.instance.move == true)
         {
-            bounceCheck();
-        }
-
-
-        // despawn
-        if (type == "vertical")
-        {
-            if (transform.position.y < verticalDespawnBoundary)
+            // move enemy forward
+            transform.position += transform.up * Time.deltaTime * (baseSpeed + (speedModifier * UI_Manager.instance.score));
+            if (direction == "vertical")
             {
-                Destroy(gameObject);
+                bounceCheck();
             }
-        }
-        else
-        {
-            if (transform.position.x > horizontalDespawnBoundary || transform.position.x < -horizontalDespawnBoundary)
+
+
+            // despawn
+            if (type == "vertical")
             {
-                Destroy(gameObject);
+                if (transform.position.y < verticalDespawnBoundary)
+                {
+                    Destroy(gameObject);
+                }
+            }
+            else
+            {
+                if (transform.position.x > horizontalDespawnBoundary || transform.position.x < -horizontalDespawnBoundary)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }

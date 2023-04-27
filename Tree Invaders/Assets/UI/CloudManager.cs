@@ -20,21 +20,24 @@ public class CloudManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check if it's time to spawn a cloud
-        if (Time.time >= nextSpawnTime)
+        if (CloudToggler.instance.clouds == true)
         {
-            // Spawn a cloud on a random side
-            if (Random.Range(0, 2) == 0)
+            // Check if it's time to spawn a cloud
+            if (Time.time >= nextSpawnTime)
             {
-                SpawnCloudRight(cloud);
-            }
-            else
-            {
-                SpawnCloudLeft(cloud);
-            }
+                // Spawn a cloud on a random side
+                if (Random.Range(0, 2) == 0)
+                {
+                    SpawnCloudRight(cloud);
+                }
+                else
+                {
+                    SpawnCloudLeft(cloud);
+                }
 
-            // Set the next spawn time
-            nextSpawnTime = Time.time + Random.Range(minSpawnInterval, maxSpawnInterval);
+                // Set the next spawn time
+                nextSpawnTime = Time.time + Random.Range(minSpawnInterval, maxSpawnInterval);
+            }
         }
     }
 
